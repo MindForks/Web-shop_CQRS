@@ -16,4 +16,8 @@
     <ProjectReference Include="..\WS_Core.Domain\WS_Core.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\OrderServices\" />
+  </ItemGroup>
+
 </Project>

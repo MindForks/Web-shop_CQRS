@@ -3,12 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using WS_Core.Data.Interfaces;
-using WS_Core.Domain.Commands;
+using WS_Core.Domain.Commands.ProductCommands;
 using WS_Core.Domain.Dtos;
 using WS_Core.Domain.Models;
 using WS_Core.Service.Dxos;
 
-namespace WS_Core.Service.Services
+namespace WS_Core.Service.Services.ProductServices
 {
     public class CreateProductHandler : IRequestHandler<CreateProductCommand, ProductDto>
     {

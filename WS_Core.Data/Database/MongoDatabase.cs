@@ -31,6 +31,12 @@ namespace WS_Core.Data.Database
             }
         }
 
+        public MongoDatabase(string collectionName)
+        {
+            this.collectionName = collectionName;
+            db = server.GetDatabase(MongoUrl.Create(connectionString).DatabaseName);
+        }
+
         public IMongoQueryable<T> Query
         {
             get
@@ -43,10 +49,9 @@ namespace WS_Core.Data.Database
             }
         }
 
-        public MongoDatabase(string collectionName)
+        public async Task<List<T>> GetAllAsync()
         {
-            this.collectionName = collectionName;
-            db = server.GetDatabase(MongoUrl.Create(connectionString).DatabaseName);
+            return await GetAsync(_ => true);
         }
 
         public T GetOne(Expression<Func<T, bool>> expression)
@@ -71,6 +76,11 @@ namespace WS_Core.Data.Database
             Collection.UpdateOne(expression, update);
         }
 
+        public async Task ReplaceOneAsync(Expression<Func<T, bool>> expression, T item)
+        {
+            await Collection.ReplaceOneAsync(expression, item);
+        }
+
         public void ReplaceOne(Expression<Func<T, bool>> expression, T update)
         {
             Collection.ReplaceOne(expression, update);
@@ -80,6 +90,7 @@ namespace WS_Core.Data.Database
         {
             Collection.DeleteOne(expression);
         }
+
         public async Task DeleteOneAsync(Expression<Func<T, bool>> expression)
         {
             await Collection.DeleteOneAsync(expression);

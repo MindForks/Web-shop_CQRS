@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using WS_Core.Domain.Dtos;
 
-namespace WS_Core.Domain.Commands
+namespace WS_Core.Domain.Commands.ProductCommands
 {
     public class CreateProductCommand : CommandBase<ProductDto>
     {

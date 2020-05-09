@@ -14,11 +14,15 @@ namespace WS_Core.Data.Interfaces
 
         IMongoQueryable<T> Query { get; set; }
 
+        Task<List<T>> GetAllAsync();
+
         T GetOne(Expression<Func<T, bool>> expression);
 
         T FindOneAndUpdate(Expression<Func<T, bool>> expression, UpdateDefinition<T> update, FindOneAndUpdateOptions<T> option);
 
         void UpdateOne(Expression<Func<T, bool>> expression, UpdateDefinition<T> update);
+
+        Task ReplaceOneAsync(Expression<Func<T, bool>> expression, T item);
 
         void ReplaceOne(Expression<Func<T, bool>> expression, T update);
 

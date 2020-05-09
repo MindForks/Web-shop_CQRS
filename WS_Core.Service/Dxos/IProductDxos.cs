@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using WS_Core.Domain.Dtos;
 using WS_Core.Domain.Models;
 
@@ -8,8 +9,9 @@ namespace WS_Core.Service.Dxos
     {
         ProductDto MapProductDto(Product product);
 
-        Product MapProduct(ProductDto productDto);
+        List<ProductDto> MapProductsDto(List<Product> products);
 
+        Product MapProduct(ProductDto productDto);
 
         Manufacturer MapManufacturer(ManufacturerDto manufacturerDto);
 

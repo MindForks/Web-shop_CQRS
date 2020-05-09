@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using WS_Core.Domain.Dtos;
 using WS_Core.Domain.Models;
 
@@ -28,8 +29,13 @@ namespace WS_Core.Service.Dxos
 
         public ProductDto MapProductDto(Product product)
         {
-            return _mapper.Map<Product, Domain.Dtos.ProductDto>(product);
+            return _mapper.Map<Product, ProductDto>(product);
         }
+        public List<ProductDto> MapProductsDto(List<Product> products)
+        {
+            return _mapper.Map<List<Product>, List<ProductDto>>(products);
+        }
+
         public Manufacturer MapManufacturer(ManufacturerDto manufacturerDto)
         {
             return _mapper.Map<ManufacturerDto, Manufacturer>(manufacturerDto);
@@ -39,5 +45,6 @@ namespace WS_Core.Service.Dxos
         {
             return _mapper.Map<ProductDto,Product>(productDto);
         }
+
     }
 }

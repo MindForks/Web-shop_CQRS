@@ -6,9 +6,9 @@ using MongoDB.Bson;
 using Newtonsoft.Json;
 using WS_Core.Domain.Dtos;
 
-namespace WS_Core.Domain.Commands
+namespace WS_Core.Domain.Commands.ProductCommands
 {
-    public class DeleteProductCommand : CommandBase<string>
+    public class DeleteProductCommand : CommandBase<bool>
     {
         [JsonConstructor]
         public DeleteProductCommand(string id)

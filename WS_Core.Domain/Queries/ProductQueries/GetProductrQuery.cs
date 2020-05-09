@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using WS_Core.Domain.Dtos;
 using WS_Core.Domain.Models;
 
-namespace WS_Core.Domain.Queries
+namespace WS_Core.Domain.Queries.ProductQueries
 {
     public class GetProductrQuery : QueryBase<ProductDto>
     {

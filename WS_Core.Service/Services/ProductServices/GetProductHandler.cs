@@ -1,16 +1,15 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using WS_Core.Data.Database;
 using WS_Core.Data.Interfaces;
 using WS_Core.Domain.Models;
-using WS_Core.Domain.Queries;
 using System.Linq;
 using System;
 using WS_Core.Domain.Dtos;
 using WS_Core.Service.Dxos;
+using WS_Core.Domain.Queries.ProductQueries;
 
-namespace WS_Core.Service.Services
+namespace WS_Core.Service.Services.ProductServices
 {
     public class GetProductHandler : IRequestHandler<GetProductrQuery, ProductDto>
     {
@@ -31,7 +30,7 @@ namespace WS_Core.Service.Services
 
             if (product != null)
             {
-                Console.WriteLine($"Got a request get customer Id: {product.Id}");
+                Console.WriteLine($"Got a request get product Id: {product.Id}");
                 var productDto = _productDxos.MapProductDto(product);
                 return productDto;
             }
