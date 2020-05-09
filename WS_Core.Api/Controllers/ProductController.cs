@@ -20,7 +20,7 @@ namespace WS_Core.Api.Controllers
         [ProducesResponseType(typeof(List<ProductDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<ProductDto>>> GetAllProductsAsync(string id)
+        public async Task<ActionResult<List<ProductDto>>> GetAllProductsAsync()
         {
             return Single(await QueryAsync(new GetAllProductsQuery()));
         }
@@ -50,13 +50,13 @@ namespace WS_Core.Api.Controllers
             return Ok(await CommandAsync(command));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteProductAsync([FromBody] DeleteProductCommand command)
+        public async Task<ActionResult> DeleteProductAsync(string id)
         {
-            var isDeleted = await CommandAsync(command);
+            var isDeleted = await CommandAsync(new DeleteProductCommand(id));
 
             if(!isDeleted)
                 return NotFound();

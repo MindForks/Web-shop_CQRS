@@ -30,19 +30,15 @@ namespace WS_Core.Domain.Commands.ProductCommands
         public ObjectId Id { get; }
 
         [JsonProperty("title")]
-        [Required]
         public string Title { get; }
 
         [JsonProperty("price")]
-        [Required]
         public double Price { get; }
 
         [JsonProperty("countInStock")]
-        [Required]
         public int CountInStock { get; }
 
         [JsonProperty("manufacturer")]
-        [Required]
         public ManufacturerDto Manufacturer { get; }
     }
 }
