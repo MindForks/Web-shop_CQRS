@@ -17,7 +17,7 @@ namespace WS_Core.Service.Services
         private readonly IDatabase<Product> _productDatabase;
 
 
-        public DeleteProductHandler(IMediator mediator)
+        public DeleteProductHandler(IDatabase<Product> productDatabase)
         {
             _productDatabase = productDatabase ?? throw new ArgumentNullException(nameof(productDatabase));
         }
