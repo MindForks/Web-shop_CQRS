@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WS_Core.Data\WS_Core.Data.csproj" />
-    <ProjectReference Include="..\WS_Core.Domain\WS_Core.Domain.csproj" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dxos\" />
+    <ProjectReference Include="..\WS_Core.Data\WS_Core.Data.csproj" />
+    <ProjectReference Include="..\WS_Core.Domain\WS_Core.Domain.csproj" />
   </ItemGroup>
 
 </Project>

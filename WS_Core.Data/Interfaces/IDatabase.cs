@@ -24,8 +24,12 @@ namespace WS_Core.Data.Interfaces
 
         void DeleteOne(Expression<Func<T, bool>> expression);
 
+        Task DeleteOneAsync(Expression<Func<T, bool>> expression);
+
         void InsertMany(IEnumerable<T> items);
 
         void InsertOne(T item);
+
+        Task InsertOneAsync(T item);
     }
 }

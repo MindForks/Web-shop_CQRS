@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Dtos\" />
     <Folder Include="Events\" />
     <Folder Include="Models\" />
     <Folder Include="Queries\" />

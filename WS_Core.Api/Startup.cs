@@ -27,9 +27,10 @@ namespace WS_Core.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         
-            services.AddScoped<ICustomerDxos, CustomerDxos>();
+            services.AddScoped<IProductDxos, ProductDxos>();
             services.AddScoped<IDatabase<Product>, ProductRepository>();
             services.AddScoped<IDatabase<Order>, OrderRepository>();
+
 
             var mediatRAssembly = AppDomain.CurrentDomain.Load("WS_Core.Service");
             services.AddMediatR(mediatRAssembly);

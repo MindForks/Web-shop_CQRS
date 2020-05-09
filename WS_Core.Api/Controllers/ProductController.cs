@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using WS_Core.Domain.Commands;
+using WS_Core.Domain.Dtos;
 using WS_Core.Domain.Models;
 using WS_Core.Domain.Queries;
 
@@ -18,12 +18,29 @@ namespace WS_Core.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Product), 200)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(404)]
-        public async Task<ActionResult<Product>> GetCustomerAsync(string id)
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<ProductDto>> GetProductAsync(string id)
         {
-            return Single(await QueryAsync(new GetProductrQuery(new ObjectId(id))));
+            return Single(await QueryAsync(new GetProductrQuery(id)));
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> CreateProductAsync([FromBody] CreateProductCommand command)
+        {
+            return Ok(await CommandAsync(command));
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteProductAsync([FromBody] DeleteProductCommand command)
+        {
+            return Ok(await CommandAsync(command));
         }
 
         // GET: api/Products

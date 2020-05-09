@@ -7,27 +7,36 @@ using WS_Core.Domain.Models;
 using WS_Core.Domain.Queries;
 using System.Linq;
 using System;
+using WS_Core.Domain.Dtos;
+using WS_Core.Service.Dxos;
 
 namespace WS_Core.Service.Services
 {
-    public class GetProductHandler : IRequestHandler<GetProductrQuery, Product>
+    public class GetProductHandler : IRequestHandler<GetProductrQuery, ProductDto>
     {
         private readonly IDatabase<Product> _productDatabase;
         private readonly IMediator _mediator;
-        //  private readonly ICustomerDxos _customerDxos;
+        private readonly IProductDxos _productDxos;
 
-        public GetProductHandler(IMediator mediator, IDatabase<Product> productDatabase)
+        public GetProductHandler(IMediator mediator, IDatabase<Product> productDatabase, IProductDxos productDxos)
         {
             _productDatabase = productDatabase ?? throw new ArgumentNullException(nameof(productDatabase));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _productDxos = productDxos ?? throw new ArgumentNullException(nameof(productDxos));
         }
 
-        public async Task<Product> Handle(GetProductrQuery request, CancellationToken cancellationToken)
+        public async Task<ProductDto> Handle(GetProductrQuery request, CancellationToken cancellationToken)
         {
-            var productsList =  await _productDatabase.GetAsync(i => i.Id == request.Id);
-            return productsList.SingleOrDefault();
+            var product = (await _productDatabase.GetAsync(i => i.Id == request.Id)).SingleOrDefault();
 
+            if (product != null)
+            {
+                Console.WriteLine($"Got a request get customer Id: {product.Id}");
+                var productDto = _productDxos.MapProductDto(product);
+                return productDto;
+            }
             // return Task.FromResult(_productDatabase.GetOne(i => i.Id == request.Id));
+            return null;
         }
     }
 }

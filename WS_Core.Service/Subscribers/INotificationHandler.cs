@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using WS_Core.Data.Database;
 using WS_Core.Data.Interfaces;
 using WS_Core.Domain.Events;
 using WS_Core.Domain.Models;
@@ -27,10 +24,12 @@ namespace WS_Core.Service.Subscribers
 
             if (product == null)
             {
+                Console.WriteLine("CreateEventHandler: Product is not found by customer id from publisher");
                 //_logger.LogWarning("Product is not found by customer id from publisher");
             }
             else
             {
+                Console.WriteLine("CreateEventHandler: Product has found by customer id: {notification.CustomerId} from publisher");
                 //_logger.LogInformation($"Product has found by customer id: {notification.CustomerId} from publisher");
             }
         }

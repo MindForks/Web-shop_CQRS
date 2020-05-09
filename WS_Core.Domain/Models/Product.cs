@@ -19,10 +19,5 @@ namespace WS_Core.Domain.Models
 
         [BsonIgnoreIfNull]
         public Manufacturer Manufacturer { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Id: {0} \nTitle: {1} \nPrice: {2} \nCountInStock: {3} \nManufacturer.Title: {4} \nManufacturer.Description: {5} \n--------", Id, Title, Price, CountInStock, Manufacturer.Title, Manufacturer.Description);
-        }
     }
 }

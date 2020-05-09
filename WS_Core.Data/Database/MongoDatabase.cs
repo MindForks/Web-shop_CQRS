@@ -80,6 +80,10 @@ namespace WS_Core.Data.Database
         {
             Collection.DeleteOne(expression);
         }
+        public async Task DeleteOneAsync(Expression<Func<T, bool>> expression)
+        {
+            await Collection.DeleteOneAsync(expression);
+        }
 
         public void InsertMany(IEnumerable<T> items)
         {
@@ -89,6 +93,11 @@ namespace WS_Core.Data.Database
         public void InsertOne(T item)
         {
             Collection.InsertOne(item);
+        }
+
+        public async Task InsertOneAsync(T item)
+        {
+            await Collection.InsertOneAsync(item);
         }
     }
 }

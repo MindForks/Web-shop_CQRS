@@ -2,40 +2,39 @@
 using MongoDB.Bson;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using WS_Core.Domain.Models;
+using WS_Core.Domain.Dtos;
 
 namespace WS_Core.Domain.Commands
 {
-     public class CreateProductCommand : CommandBase<Product>
+    public class CreateProductCommand : CommandBase<ProductDto>
     {
         public CreateProductCommand()
         {
         }
 
         [JsonConstructor]
-        public CreateProductCommand(ObjectId id, string title, double price, int countInStock)
+        public CreateProductCommand(string title, double price, int countInStock, ManufacturerDto manufacturer)
         {
-            Id = id;
             Title = title;
             Price = price;
             CountInStock = countInStock;
+            Manufacturer = manufacturer;
         }
-
-        [JsonProperty("id")]
-        [Required]
-        public ObjectId Id { get; }
 
         [JsonProperty("title")]
         [Required]
         public string Title { get; }
 
-        [JsonProperty("зrice")]
+        [JsonProperty("price")]
         [Required]
         public double Price { get; }
 
-        [JsonProperty("сountInStock")]
+        [JsonProperty("countInStock")]
         [Required]
         public int CountInStock { get; }
 
+        [JsonProperty("manufacturer")]
+        [Required]
+        public ManufacturerDto Manufacturer { get; }
     }
 }
