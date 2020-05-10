@@ -4,7 +4,8 @@ namespace WS_Core.Data.Database
 {
     public class OrderRepository : MongoDatabase<Order>
     {
-        public OrderRepository() : base("product")
+        public const string collectionName = "order";
+        public OrderRepository() : base(collectionName)
         {
         }
     }

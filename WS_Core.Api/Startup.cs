@@ -33,7 +33,6 @@ namespace WS_Core.Api
                                   builder =>
                                   {
                                       builder.AllowAnyMethod();
-                                    //  builder.AllowAnyOrigin();
                                       builder.AllowAnyHeader();
                                       builder.WithOrigins("http://localhost:8080");
                                   });
@@ -42,7 +41,7 @@ namespace WS_Core.Api
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         
-            services.AddScoped<IProductDxos, ProductDxos>();
+            services.AddScoped<ICustomDxos, CustomDxos>();
             services.AddScoped<IDatabase<Product>, ProductRepository>();
             services.AddScoped<IDatabase<Order>, OrderRepository>();
 

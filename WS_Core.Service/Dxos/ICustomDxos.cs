@@ -5,15 +5,16 @@ using WS_Core.Domain.Models;
 
 namespace WS_Core.Service.Dxos
 {
-    public interface IProductDxos
+    public interface ICustomDxos
     {
+        Manufacturer MapManufacturer(ManufacturerDto manufacturerDto);
+
         ProductDto MapProductDto(Product product);
 
         List<ProductDto> MapProductsDto(List<Product> products);
 
-        Product MapProduct(ProductDto productDto);
+        OrderDto MapOrderDto(Order order);
 
-        Manufacturer MapManufacturer(ManufacturerDto manufacturerDto);
-
+        List<OrderDto> MapOrdersDto(List<Order> orders);
     }
 }

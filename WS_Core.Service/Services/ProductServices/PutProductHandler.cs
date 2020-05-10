@@ -14,10 +14,10 @@ namespace WS_Core.Service.Services.ProductServices
     {
         private readonly IDatabase<Product> _productDatabase;
         private readonly IMediator _mediator;
-        private readonly IProductDxos _productDxos;
+        private readonly ICustomDxos _productDxos;
 
 
-        public PutProductHandler(IMediator mediator, IDatabase<Product> productDatabase, IProductDxos productDxos)
+        public PutProductHandler(IMediator mediator, IDatabase<Product> productDatabase, ICustomDxos productDxos)
         {
             _productDatabase = productDatabase ?? throw new ArgumentNullException(nameof(productDatabase));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));

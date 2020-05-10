@@ -8,7 +8,8 @@ namespace WS_Core.Data.Database
 {
     public class ProductRepository : MongoDatabase<Product>
     {
-        public ProductRepository() : base("product")
+        public const string collectionName = "product";
+        public ProductRepository() : base(collectionName)
         {
         }
     }

@@ -15,7 +15,10 @@ namespace WS_Core.Domain.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
+
         public List<MongoDBRef> ProductIDs { get; set; }
+
+        //public ICollection<Product> Products { get; set; }
 
         public string UserName { get; set; }
     }

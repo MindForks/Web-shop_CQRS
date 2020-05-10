@@ -4,11 +4,11 @@ using MongoDB.Bson;
 
 namespace WS_Core.Domain.Events
 {
-    public class ProductCreatedEvent : INotification
+    public class ItemCreatedEvent : INotification
     {
         public ObjectId ProductId { get; }
 
-        public ProductCreatedEvent(ObjectId productId)
+        public ItemCreatedEvent(ObjectId productId)
         {
             ProductId = productId;
         }

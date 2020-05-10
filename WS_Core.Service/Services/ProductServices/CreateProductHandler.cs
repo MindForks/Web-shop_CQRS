@@ -14,10 +14,10 @@ namespace WS_Core.Service.Services.ProductServices
     {
         private readonly IDatabase<Product> _productDatabase;
         private readonly IMediator _mediator;
-        private readonly IProductDxos _productDxos;
+        private readonly ICustomDxos _productDxos;
 
 
-        public CreateProductHandler(IMediator mediator, IDatabase<Product> productDatabase, IProductDxos productDxos)
+        public CreateProductHandler(IMediator mediator, IDatabase<Product> productDatabase, ICustomDxos productDxos)
         {
             _productDatabase = productDatabase ?? throw new ArgumentNullException(nameof(productDatabase));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
@@ -29,7 +29,7 @@ namespace WS_Core.Service.Services.ProductServices
             var product = new Product() {CountInStock = request.CountInStock, Price = request.Price, Title = request.Title, Manufacturer = _productDxos.MapManufacturer(request.Manufacturer) };
             await _productDatabase.InsertOneAsync(product);
 
-            await _mediator.Publish(new Domain.Events.ProductCreatedEvent(product.Id), cancellationToken);
+            await _mediator.Publish(new Domain.Events.ItemCreatedEvent(product.Id), cancellationToken);
 
             var productDto = _productDxos.MapProductDto(product);
             return productDto;

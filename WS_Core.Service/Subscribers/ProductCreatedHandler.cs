@@ -8,7 +8,7 @@ using WS_Core.Domain.Models;
 
 namespace WS_Core.Service.Subscribers
 {
-    public class ProductCreatedHandler : INotificationHandler<ProductCreatedEvent>
+    public class ProductCreatedHandler : INotificationHandler<ItemCreatedEvent>
     {
         private readonly IDatabase<Product> _productDatabase;
 
@@ -18,18 +18,18 @@ namespace WS_Core.Service.Subscribers
 
         }
 
-        public async Task Handle(ProductCreatedEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(ItemCreatedEvent notification, CancellationToken cancellationToken)
         {
             var product = await _productDatabase.GetAsync(e => e.Id == notification.ProductId);
 
             if (product == null)
             {
-                Console.WriteLine("CreateEventHandler: Product is not found by customer id from publisher");
+                Console.WriteLine("CreateEventHandler: Item is not found by customer id from publisher");
                 //_logger.LogWarning("Product is not found by customer id from publisher");
             }
             else
             {
-                Console.WriteLine("CreateEventHandler: Product has found by customer id: {notification.CustomerId} from publisher");
+                Console.WriteLine("CreateEventHandler: Item has found by customer id: {notification.CustomerId} from publisher");
                 //_logger.LogInformation($"Product has found by customer id: {notification.CustomerId} from publisher");
             }
         }
