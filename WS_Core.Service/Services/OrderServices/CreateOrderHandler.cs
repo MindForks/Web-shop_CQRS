@@ -34,7 +34,7 @@ namespace WS_Core.Service.Services.OrderServices
             var order = new Order() { UserName = request.UserName, ProductIDs = request.ProductIDs.Select(y => new MongoDBRef(ProductRepository.collectionName, y)).ToList() };
             await _orderDatabase.InsertOneAsync(order);
 
-            await _mediator.Publish(new Domain.Events.ItemCreatedEvent(order.Id), cancellationToken);
+            await _mediator.Publish(new Domain.Events.ItemCreatedEvent(order.Id, "order"), cancellationToken);
 
             var orderDto = _customDxos.MapOrderDto(order);
             return orderDto;

@@ -6,11 +6,14 @@ namespace WS_Core.Domain.Events
 {
     public class ItemCreatedEvent : INotification
     {
-        public ObjectId ProductId { get; }
+        public ObjectId ItemId { get; }
 
-        public ItemCreatedEvent(ObjectId productId)
+        public string ItemName { get; }
+
+        public ItemCreatedEvent(ObjectId itemId, string itemName)
         {
-            ProductId = productId;
+            ItemId = itemId;
+            ItemName = itemName;
         }
     }
 }

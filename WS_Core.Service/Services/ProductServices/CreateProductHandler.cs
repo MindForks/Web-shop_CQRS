@@ -29,7 +29,7 @@ namespace WS_Core.Service.Services.ProductServices
             var product = new Product() {CountInStock = request.CountInStock, Price = request.Price, Title = request.Title, Manufacturer = _productDxos.MapManufacturer(request.Manufacturer) };
             await _productDatabase.InsertOneAsync(product);
 
-            await _mediator.Publish(new Domain.Events.ItemCreatedEvent(product.Id), cancellationToken);
+            await _mediator.Publish(new Domain.Events.ItemCreatedEvent(product.Id, "product"), cancellationToken);
 
             var productDto = _productDxos.MapProductDto(product);
             return productDto;

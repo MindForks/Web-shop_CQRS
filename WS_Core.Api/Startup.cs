@@ -37,9 +37,6 @@ namespace WS_Core.Api
                                       builder.WithOrigins("http://localhost:8080");
                                   });
             });
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         
             services.AddScoped<ICustomDxos, CustomDxos>();
             services.AddScoped<IDatabase<Product>, ProductRepository>();
@@ -49,6 +46,9 @@ namespace WS_Core.Api
             var mediatRAssembly = AppDomain.CurrentDomain.Load("WS_Core.Service");
             services.AddMediatR(mediatRAssembly);
 
+            services.AddLogging();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

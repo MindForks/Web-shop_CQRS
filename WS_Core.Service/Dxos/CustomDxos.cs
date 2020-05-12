@@ -95,7 +95,7 @@ namespace WS_Core.Service.Dxos
         {
             var res = source.ProductIDs.Select(x => new ProductRepository().GetOne(db => db.Id == x.Id).Title).ToList();
             return res;
-            return new List<string> { "test" };
+         //   return new List<string> { "test" };
         }
     }
 
